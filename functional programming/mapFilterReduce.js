@@ -122,14 +122,13 @@ var watchList = [
     Response: "True",
   },
 ];
-var filteredList = watchList
-  .map((movie) => {
-    return {
-      title: movie.Title,
-      rating: movie.imdbRating,
-    };
-  })
-  .filter((movie) => {
-    return parseFloat(movie.rating) >= 8.0;
-  });
-console.log(filteredList);
+function getRating(watchList) {
+  var averageRating =
+    watchList
+      .filter((film) => film.Director === "Christopher Nolan")
+      .map((film) => Number(film.imdbRating)) //converting from string to number
+      .reduce((sumOfRatings, rating) => sumOfRatings + rating) /
+    watchList.filter((film) => film.Director === "Christopher Nolan").length; // average
+  return averageRating;
+}
+console.log(getRating(watchList));
